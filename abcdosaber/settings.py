@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ygk!6fh^n_cos(ycl@oyc=hze&2ty^776@-q%&*ktj1v+1klv&'
+SECRET_KEY = 'django-insecure-z7gv$*^1rmxa$4j7mh6!xspjy%h5m9&x15581j(*548$5og$it'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,13 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tipodeatividade.apps.TipoDeAtividadeConfig',
     'titulo.apps.TituloConfig',
-    'aluno.apps.AlunoConfig',
     'instrutor.apps.InstrutorConfig',
+    'aluno.apps.AlunoConfig',
     'turma.apps.TurmaConfig',
     'utilitarios.apps.UtilitariosConfig',
-    'atividades.apps.AtividadesConfig',
-    
 ]
 
 MIDDLEWARE = [
@@ -61,9 +60,9 @@ ROOT_URLCONF = 'abcdosaber.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'templates'
-            ],
+        'DIRS': [ 
+                    BASE_DIR / "templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'PT-BR'
+LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -125,8 +124,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / STATIC_URL,
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuração de envio de e-mail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.example.com' # informe o servidor de e-mail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_email@example.com' # informe o seu e-mail
+EMAIL_HOST_PASSWORD = 'your_password' # informe a senha do seu e-mail 
